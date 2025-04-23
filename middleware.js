@@ -4,8 +4,7 @@ import { verifyTideCloakToken } from '/lib/tideJWT';
 
 // Developer should list all secure pages and their respective allowed roles
 const routesRoles = [
-  { URLStart: "/", role: 'offline_access' },
-  //{ URLStart: "/protected/dob", role: 'offline_access' },
+  { URLStart: "/admin", role: 'offline_access' },
 ];
 
 export async function middleware(req) {
@@ -23,7 +22,7 @@ export async function middleware(req) {
 
   // Only protect routes starting with /protected
   if (requiredRole == null) {
-	console.debug("[Middleware] skip next");
+	  console.debug("[Middleware] skip next");
     return NextResponse.next();
   }
   
@@ -37,20 +36,20 @@ export async function middleware(req) {
     }
 
     const user = await verifyTideCloakToken(token, requiredRole);
-    
+   
     if (user) {
   	  return NextResponse.next();
     }
   
     throw "Token verification failed.";
+
   } catch (err) {
 	console.error("[Middleware] ", err);
-    return NextResponse.redirect(new URL("/fail", req.url));
+   return NextResponse.redirect(new URL("/fail", req.url));
   }
-  
 }
 
-//Which routes the middleware should run on:
+// Which routes the middleware should run on:
 export const config = {
-  matcher: ["/protected/:path*"],                       //TODO: Tempoary, change when UI is done
+  matcher: ["/admin/:path*"]
 };

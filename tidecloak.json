@@ -8,15 +8,15 @@
   "jwk": {
     "keys": [
       {
-        "kid": "rG6Hlc1Efe52b2LuUUpFIVJ8gxBDyfTr9Vktk2jwMWA",
+        "kid": "VmpSCzjwXCIwUlCwbi3_KhpgURCH3EqcdM_C1mnmbIs",
         "kty": "OKP",
         "alg": "EdDSA",
         "use": "sig",
         "crv": "Ed25519",
-        "x": "d8GDsIG28Jvb3Sf_KZXlIbQ8Kb-XYQmUiL7d-aHSQcU"
+        "x": "KS_be8xTH8xNjZu6myeHxwz8i9SWwj-JVw4OO94LMX0"
       }
     ]
   },
-  "vendorId": "167152084707669103743067128695421580455871814161190133304240695204293227326",
+  "vendorId": "5060514526960439920107058023057224413905972370222062784126863817131281972190",
   "homeOrkUrl": "https://ork1.tideprotocol.com"
 }
