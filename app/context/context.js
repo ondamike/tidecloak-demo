@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 // Instead of tidecloak.json as writing to that configuration file rerenders the whole application.
 import settings from "/test-realm.json";
 
@@ -17,9 +17,25 @@ const baseURL = "http://localhost:8080";
 export const Provider = ({ children }) => {
 
     const [page, setPage] = useState("Landing"); //TODO: Temporary, redo when UI is done
+    const [loggedUser, setLoggedUser] = useState(null);
 
+    useEffect(() => {
+        // Get the stored user even on refresh of a page 
+        const stored = localStorage.getItem("user");
+        console.log(stored);
+        if (stored){
+            setLoggedUser(JSON.parse(stored));
+        }
+    }, [])
+    
+    const logUser = (user) => {
+        setLoggedUser(user);
+        // Store for incase the page gets refreshed
+        localStorage.setItem("user", JSON.stringify(user));
+    }
+ 
     return (
-        <Context.Provider value={{realm, baseURL, page, setPage}}>
+        <Context.Provider value={{realm, baseURL, logUser, loggedUser, page, setPage}}>
             {children}
         </Context.Provider>
     )
